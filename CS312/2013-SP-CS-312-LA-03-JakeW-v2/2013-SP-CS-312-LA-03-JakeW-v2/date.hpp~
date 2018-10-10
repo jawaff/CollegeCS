@@ -1,0 +1,29 @@
+
+#ifndef _Date
+#define _Date
+
+#include <string>
+
+using namespace std;
+
+class Date
+{
+  private:
+    int month;
+    int day;
+    int year;
+
+  public:
+    Date(int d, int m, int y);
+    void progressOneDay();
+    void progressOneMonth();
+    void progressOneYear();
+    void setDate(int d, int m, int y);
+    int getDay();
+    int getMonth();
+    int getYear();
+	string getNumDate();
+	string getNamedDate();
+};
+
+#endif

@@ -1,0 +1,209 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "date.hpp"
+#include "extras.cpp"
+
+///Constructor for the Date class
+///@post The day, month and year variables are set to something. The 
+///@param month The day of month for the Date
+///@param day The day of month for the Date
+///@param year The day of month for the Date
+///@return An instance for the Date class
+Date::Date(int month, int day, int year)
+{
+	setDate(month,day,year);
+}
+
+///Progress one day in time
+///@post The day variable will be altered
+void Date::progressOneDay()
+{
+	//This will check to see if this is the last day within the month
+	//	(assuming generic months of 31 days.)
+	if(day == 31)
+	{
+		day = 1;
+		if(month == 12)
+		{
+			month = 1;
+		}
+		else
+		{
+			month += 1;
+		}
+	}
+	else
+	{
+		day += 1;
+	}
+}
+
+///This will progress the date by one month
+///@post The month and possibly the year variables will change
+void Date::progressOneMonth()
+{
+	if(month == 12)
+	{
+		month = 1;
+		year += 1;
+	}
+	else
+	{
+		month += 1;
+	}
+}
+
+///This will progress the date by one year
+///@post The year variable will be changed
+void Date::progressOneYear()
+{
+	year += 1;
+}
+
+///This is for setting the date
+///@post The day, month and year variables will be set as something new.
+///@param month The day of month for the Date
+///@param day The day of month for the Date
+///@param year The day of month for the Date
+void Date::setDate(int month, int day, int year)
+{
+	day = day;
+	month = month;
+	year = year;
+}
+
+///To get the current day
+///@return The day variable gets returned
+int Date::getDay()
+{
+	return day;
+}
+
+///To get the current month
+///@return The month variable gets returned
+int Date::getMonth()
+{
+	return month;
+}
+
+///To get the current year
+///@return The year variable gets returned
+int Date::getYear()
+{
+	return year;
+}
+
+///Retrieves the numbered date string 
+///	representation.
+///@return A string that has the integer month, 
+///	day and year variables separated by "/"s.
+string Date::getNumDate()
+{
+	//The assembled date should be similar to "2/13/2013"
+	string date = "";
+	
+	date.append(intToString(month));
+
+	date.append("/");
+
+	date.append(intToString(day));
+
+	date.append("/");
+
+	date.append(intToString(year));
+
+	return date;
+}
+
+///Retrieves the named date string 
+///	representation.
+///@return A string that has the names of the 
+///	month and day along with the integer year
+///	separated by "/"s.
+string Date::getNamedDate()
+{
+	//The assembled date should be similar to "Sunday, 27, January, 2013"
+	string date = "";
+
+	//Determine the current day of the week and append it into date.
+	//Note that we need to start on day #0 instead of day #1.
+	//	Without it day #1 would start on a Tuesday every month.
+	//	The modulo 7 is the reason behind this!
+	switch((day-1) % 7)
+	{
+	case 0:
+		date.append("Monday");
+		break;
+	case 1:
+		date.append("Tuesday");
+		break;
+	case 2:
+		date.append("Wednesday");
+		break;
+	case 3:
+		date.append("Thursday");
+		break;
+	case 4:
+		date.append("Friday");
+		break;
+	case 5:
+		date.append("Saturday");
+		break;
+	case 6:
+		date.append("Sunday");
+		break;
+	}
+
+	date.append(", ");
+	
+	date.append(intToString(day));
+
+	date.append(", ");
+
+	//Determine the name of the current month based on an integer value.
+	switch(month)
+	{
+	case 1:
+		date.append("January");
+		break;
+	case 2:
+		date.append("February");
+		break;
+	case 3:
+		date.append("March");
+		break;
+	case 4:
+		date.append("April");
+		break;
+	case 5:
+		date.append("May");
+		break;
+	case 6:
+		date.append("June");
+		break;
+	case 7:
+		date.append("July");
+		break;
+	case 8:
+		date.append("August");
+		break;
+	case 9:
+		date.append("September");
+		break;
+	case 10:
+		date.append("October");
+		break;
+	case 11:
+		date.append("November");
+		break;
+	case 12:
+		date.append("December");
+		break;
+	}
+
+	date.append(", ");
+
+	date.append(intToString(year));
+
+	return date;
+}

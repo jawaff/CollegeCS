@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ -f music.mp3 ]
+   then
+      echo "I'm going to play a music file!"
+      rhythmbox music.mp3
+fi
+
+for i in ls $1/*.gif ;
+   do
+      echo "Found file $i and will check its existence"
+      if [ -f $i ]
+         then
+            echo "Displaying the image now!"
+            gimp $i
+      fi
+done

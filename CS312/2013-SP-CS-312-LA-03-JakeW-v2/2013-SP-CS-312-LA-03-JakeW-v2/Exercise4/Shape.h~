@@ -1,0 +1,12 @@
+
+#ifndef _SHAPE
+#define _SHAPE
+
+class Shape
+{
+public:
+	virtual float getPerimeter();
+	virtual float getArea();
+};
+
+#endif

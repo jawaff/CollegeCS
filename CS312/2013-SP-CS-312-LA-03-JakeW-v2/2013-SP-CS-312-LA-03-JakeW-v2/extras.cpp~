@@ -1,0 +1,13 @@
+#include <string>
+#include "extras.h"
+
+//Converts an integer to a string
+//@param number The number that is to be converted to a string.
+//@return The equivalent string representation of the number.
+std::string intToString(int number)
+{
+   const int max_size = std::numeric_limits<int>::digits10 + 1 /*sign*/ + 1 /*0-terminator*/;
+   char buffer[max_size] = {0};
+   sprintf(buffer, "%d", n);
+   return std::string(buffer);	
+}
